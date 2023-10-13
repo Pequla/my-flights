@@ -12,6 +12,13 @@ const app = express()
 app.use(express.json())
 app.use(morgan('combined'))
 app.use(cors())
+app.use((req, res, next) => {
+    const xfr = req.headers['X-Forwarded-For']
+    if (xfr)
+        console.log('Requested by: ' + xfr)
+
+    next()
+})
 
 // Reading env variables
 dotenv.config();

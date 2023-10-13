@@ -28,7 +28,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
     try {
         const email = (req as any).user.name;
         const flight = (req.params.id) as any as number;
-        const data = checkIfDefined(await FlightService.saveUserFlight(email, flight), res);
+        const data = checkIfDefined(await FlightService.deleteUserFlight(email, flight), res);
         res.json(data)
     } catch (e) {
         sendErrorResponse(res, 400, e.message);
