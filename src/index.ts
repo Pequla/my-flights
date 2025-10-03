@@ -37,9 +37,9 @@ app.use('/api/flight', flightRoute);
 app.use('/api/user', userRoute);
 
 // Default not found page
-app.get('*', function (req, res) {
-    notFoundResponse(res)
-});
+app.use((req, res, next) => {
+    notFoundResponse(res);
+})
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
